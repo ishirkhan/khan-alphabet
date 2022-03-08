@@ -11,6 +11,8 @@ export type AlphabetMap = { [key: string]: Alpha };
 
 export class Alphabet {
   public table: Alpha[] = [];
+  public map: AlphabetMap = {};
+
   constructor(public kind: AlphaKind = AlphaKind.Ug) {
     UG_CHARS.forEach((char, index) => {
       const alpha = new Alpha({
@@ -24,23 +26,26 @@ export class Alphabet {
       });
       this.table.push(alpha);
     });
+
+    this.map = this.getMap(kind);
   }
 
-  get_table() {
+  getTable() {
     return this.table;
   }
-  get_map(keyKind: AlphaKind | undefined = undefined) {
+  getMap(keyKind: AlphaKind | undefined = undefined) {
     if (!keyKind) {
       keyKind = this.kind;
     }
     const alphabetMap: AlphabetMap = {};
     this.table.forEach((alpha) => {
-      alphabetMap[alpha.get_char(keyKind)] = alpha;
+      alphabetMap[alpha.getChar(keyKind)] = alpha;
     });
 
     return alphabetMap;
   }
-  get_hemze() {
+
+  getHemze() {
     return this.table[0];
   }
 }

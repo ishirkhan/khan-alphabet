@@ -32,7 +32,7 @@ export class Alpha implements IAlpha {
     this.hemze = alpha.hemze;
   }
 
-  get_char(kind: AlphaKind | undefined = undefined) {
+  getChar(kind: AlphaKind | undefined = undefined) {
     if (!kind) {
       kind = this.kind;
     }

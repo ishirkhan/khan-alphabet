@@ -1,19 +1,4 @@
-# 计划
+# todo
 
-## Bug
-
-## 开发
-
-- 启动本地开发环境
-
-  > yarn start
-
-## 编译
-
-- `
-  > yarn build
-
-## 测试
-
-- `
-  > yarn test
+- [x] table 功能重写
+- [ ] retext 功能重写

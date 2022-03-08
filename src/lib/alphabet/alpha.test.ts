@@ -22,7 +22,7 @@ describe("测试 Alpha", () => {
   });
 
   test("测试Alpha get_char 方法", () => {
-    expect(alpha.get_char()).toEqual("u");
-    expect(alpha.get_char(AlphaKind.KhanUz)).toEqual("h");
+    expect(alpha.getChar()).toEqual("u");
+    expect(alpha.getChar(AlphaKind.KhanUz)).toEqual("h");
   });
 });

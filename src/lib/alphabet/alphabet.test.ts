@@ -9,21 +9,21 @@ describe("测试 Alphabet", () => {
     expect(UgAlphabet.table.length).toEqual(33);
   });
 
-  test("测试 Alphabet get_table", () => {
-    expect(UgAlphabet.get_table().length).toEqual(33);
+  test("测试 Alphabet getTable", () => {
+    expect(UgAlphabet.getTable().length).toEqual(33);
   });
 
-  test("测试 Alphabet get_map", () => {
-    let map = UgAlphabet.get_map();
+  test("测试 Alphabet getMap", () => {
+    let map = UgAlphabet.getMap();
     expect(Object.keys(map).length).toEqual(33);
     expect(Object.keys(map)[5]).toEqual("و");
 
-    expect(Object.keys(UgAlphabet.get_map(AlphaKind.Khan))[26]).toEqual("ng");
+    expect(Object.keys(UgAlphabet.getMap(AlphaKind.Khan))[26]).toEqual("ng");
   });
 
-  test("测试 Alphabet get_hemze", () => {
-    let map = UgAlphabet.get_map();
-    expect(UgAlphabet.get_hemze().ug).toEqual("ئ");
-    expect(UgAlphabet.get_hemze().khan).toEqual("x");
+  test("测试 Alphabet getHemze", () => {
+    let map = UgAlphabet.getMap();
+    expect(UgAlphabet.getHemze().ug).toEqual("ئ");
+    expect(UgAlphabet.getHemze().khan).toEqual("x");
   });
 });
