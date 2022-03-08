@@ -18,6 +18,7 @@
     "build": "tsc && vite build",
     "postbuild": "tsc",
     "test": "jest --config=jest.config.js",
+    "test:watch": "jest --config=jest.config.js --watch",
     "changelog:first": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && yarn changeissueurl",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && yarn changeissueurl",
     "release": "./scripts/release.sh",
