@@ -1,0 +1,51 @@
+{
+  "name": "khan-table",
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "typings": "./dist/lib/index.d.ts",
+  "main": "./dist/khan-table.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/khan-table.es.js",
+      "require": "./dist/khan-table.umd.js"
+    }
+  },
+  "scripts": {
+    "start": "rm -rf node_modules/.vite && vite",
+    "prebuild": "yarn test",
+    "build": "tsc && vite build",
+    "postbuild": "tsc",
+    "test": "jest --config=jest.config.js",
+    "changelog:first": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && yarn changeissueurl",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && yarn changeissueurl",
+    "release": "./scripts/release.sh",
+    "release:major": "yarn release -r major",
+    "release:minor": "yarn release -r minor",
+    "release:patch": "yarn release -r patch",
+    "changeissueurl": "replace 'https://github.com/shirkhan-lib-name/commit/' 'https://gitee.com/silvaq/shirkhan-lib-name/commit/'",
+    "generate:readme": "yarn readme-md-generator -y"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@babel/runtime": "^7.16.0",
+    "@babel/runtime-corejs2": "^7.16.0",
+    "@babel/runtime-corejs3": "^7.16.0",
+    "@types/jest": "^27.0.2",
+    "babel-jest": "^27.3.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "conventional-changelog": "^3.1.25",
+    "core-js": "3",
+    "corejs": "^1.0.0",
+    "jest": "^27.3.1",
+    "readme-md-generator": "^1.0.0",
+    "release": "^6.3.0",
+    "standard-version": "^9.3.2",
+    "typescript": "^4.6.2",
+    "vite": "^2.6.4"
+  },
+  "dependencies": {}
+}
