@@ -3,19 +3,18 @@ import {
   whiteSpace,
   numerical,
 } from "parse-latin/lib/expressions";
-import { Alphabet, AlphaKind, UG_CHARS } from "../alphabet";
 
-export class CharNode {
+import type { Node } from "unist";
+
+export class CharNode implements Node {
   public type: string = "CharNode";
   protected _value: string = "";
-  constructor(
-    public value: string,
-    public index: number,
-    public word: string,
-    public alphabet: Alphabet,
-    public ignoreConver: boolean = false
-  ) {
+  protected _pre: string = "";
+  protected _next: string = "";
+  constructor(public value: string, public index: number, public text: string) {
     this._value = value;
+    this._pre = text[index - 1];
+    this._next = text[index + 1];
   }
 
   isAscii() {
@@ -37,21 +36,16 @@ export class CharNode {
   isNumber() {
     return numerical.test(this.value);
   }
+  // getAlpha() {
+  //   return this.alphabet.map[this._value];
+  // }
 
-  isUgChar() {
-    return UG_CHARS.includes(this.value);
-  }
-
-  getAlpha() {
-    return this.alphabet.map[this._value];
-  }
-
-  replaceTo(alphaKind: AlphaKind | undefined = undefined) {
-    if (!alphaKind) {
-      alphaKind = this.alphabet.kind;
-    }
-    const alpha = this.getAlpha();
-    if (!alpha) return;
-    this.value = alpha.getChar(alphaKind);
-  }
+  // replaceTo(alphaKind: AlphaKind | undefined = undefined) {
+  //   if (!alphaKind) {
+  //     alphaKind = this.alphabet.kind;
+  //   }
+  //   const alpha = this.getAlpha();
+  //   if (!alpha) return;
+  //   this.value = alpha.getChar(alphaKind);
+  // }
 }

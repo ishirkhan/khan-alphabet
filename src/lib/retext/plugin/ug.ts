@@ -1,11 +1,6 @@
 import { visit } from "unist-util-visit";
-import { AlphaKind } from "../../alphabet";
 import { CharNode } from "../charNode";
-import { ParentNode } from "../types";
-function handle(node: CharNode, _index: number, _parent: ParentNode) {
-  if (node.ignoreConver) return;
-  node.replaceTo(AlphaKind.KhanUz);
-}
+function handle(node: CharNode, _index: number, _parent: Node) {}
 /**
  * 母语字母转换成 khan-uz
  * @returns
