@@ -1,6 +1,6 @@
 import { visit } from "unist-util-visit";
-import { Alphabet, AlphaKind, TRANSLATIONAL_MARK } from "../../alphabet";
-import { CharNode } from "../charNode";
+import { Alphabet, AlphaKind, TRANSLATIONAL_MARK } from "../../../alphabet";
+import { CharNode } from "../../charNode";
 
 const alphabet = new Alphabet(AlphaKind.Ug);
 let ignoreConvert = false; // 不转义【默认都要转义】
@@ -11,7 +11,7 @@ let ignoreConvert = false; // 不转义【默认都要转义】
  */
 export function ugToKhanUz() {
   return (tree: any) => {
-    // 为了保证状态不被缓存，重置一次
+    // 保证状态不被缓存
     ignoreConvert = false;
     visit(tree, "CharNode", converter as any);
   };
@@ -29,7 +29,7 @@ function _removeHemze(node: CharNode) {
   }
 }
 
-function _ignoreConvertHanlder(
+function _ignoreConvertHandler(
   node: CharNode,
   index: number,
   parent: { children: CharNode[] }
@@ -67,8 +67,6 @@ function _ignoreConvertHanlder(
 }
 
 function _replacePunction(node: CharNode) {
-  // result: "?;,",
-  // result: "؟؛،",
   if (!node.isPunctuation()) return;
 
   node.value = node.value.replace("؟", "?");
@@ -80,19 +78,18 @@ function converter(
   index: number,
   parent: { children: CharNode[] }
 ) {
-  // 不需要处理
+  // 不处理
   if (node.isWhiteSpace() || node.isNumber()) {
     return;
   }
 
   _replacePunction(node);
-  _ignoreConvertHanlder(node, index, parent);
+  _ignoreConvertHandler(node, index, parent);
 
-  // 不在字母表中的字符跳过处理
   if (alphabet.hasChar(node._value) === false) {
     return;
   }
   // 开始处理母语字母
-  _removeHemze(node); //Hemze 需要去掉
+  _removeHemze(node); //去掉 Hemze
   node.value = alphabet.getAlpha(node._value).khanUz;
 }

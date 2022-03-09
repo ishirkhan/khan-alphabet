@@ -1,14 +1,15 @@
 import { unified } from "unified";
 import { baseCompiler } from "./compiler";
 import { baseParser } from "./parser";
-import { ugToKhanUz } from "./plugin/ug";
+import { khanUzToUg } from "./plugin/khan_uz";
 
 const processor = unified()
   .use(baseParser)
-  .use(ugToKhanUz)
+  .use(khanUzToUg)
   .use(baseCompiler as any);
-// const result = processor.processSync("123 شىرخان asdf  ئادەم"); //ئادەمh
-const result = processor.processSync("ئادەمh");
+const result = processor.processSync(
+  "ŝirħan êlipbesi ŝirħanniñ turmuŝ we /english digendek / ħizmet iĥtiyaji vĉvn yasap ĉiqilĝan êlipbedur."
+);
 console.log("the result", result.value);
 
 export function demo() {}
