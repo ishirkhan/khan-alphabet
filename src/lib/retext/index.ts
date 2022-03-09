@@ -1,13 +1,14 @@
 import { unified } from "unified";
 import { baseCompiler } from "./compiler";
 import { baseParser } from "./parser";
-import { khanUzToKhan } from "./plugin/khan_uz";
-
+import { khanToKhanUz } from "./plugin/khan";
 const processor = unified()
   .use(baseParser)
-  .use(khanUzToKhan)
+  .use(khanToKhanUz)
   .use(baseCompiler as any);
-const result = processor.processSync("vnge êliŝ");
+const result = processor.processSync(
+  "shirkhan ShirKhan SHirkHan /english/ ehlipbesi vnhge ehlish"
+);
 console.log("the result", result.value);
 
 export function demo() {}
