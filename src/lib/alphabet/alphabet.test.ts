@@ -26,4 +26,20 @@ describe("测试 Alphabet", () => {
     expect(UgAlphabet.getHemze().ug).toEqual("ئ");
     expect(UgAlphabet.getHemze().khan).toEqual("x");
   });
+
+  test("测试 Alphabet hasChar", () => {
+    expect(UgAlphabet.hasChar("ا")).toEqual(true);
+    expect(UgAlphabet.hasChar("ش")).toEqual(true);
+    expect(UgAlphabet.hasChar("")).toEqual(false);
+    expect(UgAlphabet.hasChar("100")).toEqual(false);
+    expect(UgAlphabet.hasChar("?")).toEqual(false);
+  });
+
+  test("测试 Alphabet getAlpha", () => {
+    expect(UgAlphabet.getAlpha("ا").khan).toEqual("a");
+    expect(UgAlphabet.getAlpha("ش").khan).toEqual("sh");
+    expect(UgAlphabet.getAlpha("").khan).toEqual("");
+    expect(UgAlphabet.getAlpha("100").khan).toEqual("100");
+    expect(UgAlphabet.getAlpha("?").khan).toEqual("?");
+  });
 });

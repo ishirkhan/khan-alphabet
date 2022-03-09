@@ -7,7 +7,8 @@ const processor = unified()
   .use(baseParser)
   .use(ugToKhanUz)
   .use(baseCompiler as any);
-const result = processor.processSync("123شىرخان asdf");
+// const result = processor.processSync("123 شىرخان asdf  ئادەم"); //ئادەمh
+const result = processor.processSync("ئادەمh");
 console.log("the result", result.value);
 
 export function demo() {}

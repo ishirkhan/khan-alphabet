@@ -8,9 +8,9 @@ import type { Node } from "unist";
 
 export class CharNode implements Node {
   public type: string = "CharNode";
-  protected _value: string = "";
-  protected _pre: string = "";
-  protected _next: string = "";
+  public _value: string = "";
+  public _pre: string = "";
+  public _next: string = "";
   constructor(public value: string, public index: number, public text: string) {
     this._value = value;
     this._pre = text[index - 1];
@@ -18,23 +18,26 @@ export class CharNode implements Node {
   }
 
   isAscii() {
-    return /[\x00-\xFFêëôöüĉžŝĝñĥħĵ]/.test(this.value);
+    return /[\x00-\xFFêëôöüĉžŝĝñĥħĵ]/.test(this._value);
   }
 
   isAsciiAZ() {
-    return /[a-zA-Zêëôöüĉžŝĝñĥħĵ]/.test(this.value);
+    return /[a-zA-Zêëôöüĉžŝĝñĥħĵ]/.test(this._value);
   }
 
-  isPunctuation() {
-    return punctuation.test(this.value);
+  isPunctuation(tchar: string | undefined = undefined) {
+    if (tchar) {
+      return punctuation.test(tchar);
+    }
+    return punctuation.test(this._value);
   }
 
   isWhiteSpace() {
-    return whiteSpace.test(this.value);
+    return whiteSpace.test(this._value);
   }
 
   isNumber() {
-    return numerical.test(this.value);
+    return numerical.test(this._value);
   }
   // getAlpha() {
   //   return this.alphabet.map[this._value];

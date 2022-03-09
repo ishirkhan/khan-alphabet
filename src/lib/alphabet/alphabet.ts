@@ -1,4 +1,4 @@
-import { Alpha, AlphaKind } from "./alpha";
+import { Alpha, AlphaKind, IAlpha } from "./alpha";
 import {
   KHAN_CHARS,
   KHAN_UZ_CHARS,
@@ -47,5 +47,26 @@ export class Alphabet {
 
   getHemze() {
     return this.table[0];
+  }
+
+  hasChar(tChar: string) {
+    return tChar in this.map;
+  }
+
+  getAlpha(tChar: string) {
+    if (this.hasChar(tChar)) {
+      return this.map[tChar];
+    }
+
+    let alpha: IAlpha = {
+      kind: this.kind,
+      ug: tChar,
+      uly: tChar,
+      khan: tChar,
+      khanUz: tChar,
+      vowels: false,
+      hemze: false,
+    };
+    return new Alpha(alpha);
   }
 }
