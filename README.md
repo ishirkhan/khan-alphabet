@@ -5,4 +5,4 @@
   - [x] ug to khan-uz
   - [x] khan-uz to ug
   - [ ] khan to khan-uz
-  - [ ] khan-uz to khan
+  - [x] khan-uz to khan

@@ -1,1 +1,1 @@
-export * from "./ug";
+export * from "./toKhanUz";

@@ -1,35 +1,37 @@
 import { unified } from "unified";
 import { baseCompiler } from "../../compiler";
 import { baseParser } from "../../parser";
-import { khanUzToUg } from "./toUg";
+import { khanUzToKhan } from "./toKhan";
 
+// khan-uz to khan
 const processor = unified()
   .use(baseParser)
-  .use(khanUzToUg)
+  .use(khanUzToKhan)
   .use(baseCompiler as any);
-// khan-uz to ug
-const converter = (text) => processor.processSync(text).toString();
+// khan to ug
+const toKhan = (text) => processor.processSync(text).toString();
+
 describe("双字符测试 sh,kh eh,gh,ch,ng,zh,wh", () => {
   const cases = [
     {
       name: "sh,kh",
-      expect: "شىرخان",
-      result: converter("ŝirħan"),
+      result: "shirkhan",
+      expect: toKhan("ŝirħan"),
     },
     {
       name: "eh,gh",
-      expect: "ئېسىل ئىشلارغا تۇتۇش قىلدۇق",
-      result: converter("êsil iŝlarĝa tutuŝ qilduq"),
+      result: "ehsil ishlargha tutush qilduq",
+      expect: toKhan("êsil iŝlarĝa tutuŝ qilduq"),
     },
     {
       name: "ch,ng",
-      expect: "چۈشىنىڭ",
-      result: converter("ĉvŝiniñ"),
+      result: "chvshining",
+      expect: toKhan("ĉvŝiniñ"),
     },
     {
       name: "wh,zh",
-      expect: "ھازىرقى ژورنال",
-      result: converter("ĥazirqi ĵornal"),
+      result: "whazirqi jhornal",
+      expect: toKhan("ĥazirqi ĵornal"),
     },
   ];
 
@@ -45,18 +47,18 @@ describe("h 字符规则测试", () => {
   const cases = [
     {
       name: "单独出现不做转换",
-      expect: "ئادەمh",
-      result: converter("adem/h/"),
+      result: "ademh",
+      expect: toKhan("ademh"),
     },
     {
       name: "组词作用",
-      expect: "شىرخان",
-      result: converter("ŝirħan"),
+      result: "shirkhan",
+      expect: toKhan("ŝirħan"),
     },
     {
       name: "解决语义冲突作用",
-      expect: "ئۈنگە ئېلىش",
-      result: converter("vnge êliŝ"),
+      result: "vnhge ehlish",
+      expect: toKhan("vnge êliŝ"),
     },
   ];
 
@@ -71,33 +73,8 @@ describe("Hemze 规则测试", () => {
   const cases = [
     {
       name: "单词中间的x当做Hemze",
-      expect: "سۈرئەت",
-      result: converter("svrxet"),
-    },
-    {
-      name: "辅音开头的单词没有hemze",
-      expect: "شىرخان",
-      result: converter("ŝirħan"),
-    },
-    {
-      name: "元音开头的单词无需加Hemze",
-      expect: "ئادەملەر",
-      result: converter("ademler"),
-    },
-    {
-      name: "元音开头带Hemze的单词需正常识别",
-      expect: "ئادەملەر",
-      result: converter("ademler"),
-    },
-    {
-      name: "符号开头的单词需正确处理Hemze",
-      expect: "،ئادەملەر",
-      result: converter(",ademler"),
-    },
-    {
-      name: "空白开头的单词需正确处理Hemze",
-      expect: " ئادەملەر",
-      result: converter(" ademler"),
+      result: "svrxet",
+      expect: toKhan("svrxet"),
     },
   ];
 
@@ -112,13 +89,13 @@ describe("n g ng gh 语义冲突", () => {
   const cases = [
     {
       name: "n g ng",
-      expect: "مېنىڭ ئاۋازىمنى ئۈنگە ئالماقچى",
-      result: converter("mêniñ awazimni vnge almaqĉi"),
+      result: "mehning awazimni vnhge almaqchi",
+      expect: toKhan("mêniñ awazimni vnge almaqĉi"),
     },
     {
       name: "n gh, ngh => n+gh",
-      expect: "باشلانغان",
-      result: converter("baŝlanĝan"),
+      result: "bashlanghan",
+      expect: toKhan("baŝlanĝan"),
     },
   ];
 
@@ -133,8 +110,8 @@ describe("终止符 '/' 测试", () => {
   const cases = [
     {
       name: "终止符包围的内容不做转换",
-      expect: "شىرخان hello world دەيدۇ",
-      result: converter("ŝirħan /hello world/ deydu"),
+      result: "shirkhan /hello world/ deydu",
+      expect: toKhan("ŝirħan /hello world/ deydu"),
     },
   ];
 
@@ -149,8 +126,8 @@ describe("标点符号", () => {
   const cases = [
     {
       name: "三个符号需要转移",
-      expect: "؟؛،",
-      result: converter("?;,"),
+      result: "?;,",
+      expect: toKhan("?;,"),
     },
   ];
 

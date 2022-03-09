@@ -16,6 +16,14 @@ export function khanUzToUg() {
   };
 }
 
+function _replacePunction(node: CharNode) {
+  if (!node.isPunctuation()) return;
+
+  node.value = node.value.replace("?", "؟");
+  node.value = node.value.replace(";", "؛");
+  node.value = node.value.replace(",", "،");
+}
+
 function converter(
   node: CharNode,
   _index: number,
@@ -30,6 +38,9 @@ function converter(
     node._value = node.value;
     return;
   }
+
+  _replacePunction(node);
+
   // 不做处理
   if (!alphabet.hasChar(node.value) || ignoreConvert) {
     return;
@@ -38,6 +49,7 @@ function converter(
   // 开始转换
   const currentNodeAlpha = alphabet.getAlpha(node.value);
   node.value = currentNodeAlpha.ug;
+
   // 补充 hemze
   if (
     currentNodeAlpha.vowels &&
