@@ -15,23 +15,23 @@ describe("双字符测试 sh,kh eh,gh,ch,ng,zh,wh", () => {
   const cases = [
     {
       name: "sh,kh",
-      result: "shirkhan",
-      expect: toKhan("ŝirħan"),
+      expect: "shirkhan",
+      result: toKhan("ŝirħan"),
     },
     {
       name: "eh,gh",
-      result: "ehsil ishlargha tutush qilduq",
-      expect: toKhan("êsil iŝlarĝa tutuŝ qilduq"),
+      expect: "ehsil ishlargha tutush qilduq",
+      result: toKhan("êsil iŝlarĝa tutuŝ qilduq"),
     },
     {
       name: "ch,ng",
-      result: "chvshining",
-      expect: toKhan("ĉvŝiniñ"),
+      expect: "chvshining",
+      result: toKhan("ĉvŝiniñ"),
     },
     {
       name: "wh,zh",
-      result: "whazirqi jhornal",
-      expect: toKhan("ĥazirqi ĵornal"),
+      expect: "whazirqi jhornal",
+      result: toKhan("ĥazirqi ĵornal"),
     },
   ];
 
@@ -47,18 +47,18 @@ describe("h 字符规则测试", () => {
   const cases = [
     {
       name: "单独出现不做转换",
-      result: "ademh",
-      expect: toKhan("ademh"),
+      expect: "ademh",
+      result: toKhan("ademh"),
     },
     {
       name: "组词作用",
-      result: "shirkhan",
-      expect: toKhan("ŝirħan"),
+      expect: "shirkhan",
+      result: toKhan("ŝirħan"),
     },
     {
       name: "解决语义冲突作用",
-      result: "vnhge ehlish",
-      expect: toKhan("vnge êliŝ"),
+      expect: "vnhge ehlish",
+      result: toKhan("vnge êliŝ"),
     },
   ];
 
@@ -73,8 +73,8 @@ describe("Hemze 规则测试", () => {
   const cases = [
     {
       name: "单词中间的x当做Hemze",
-      result: "svrxet",
-      expect: toKhan("svrxet"),
+      expect: "svrxet",
+      result: toKhan("svrxet"),
     },
   ];
 
@@ -89,13 +89,13 @@ describe("n g ng gh 语义冲突", () => {
   const cases = [
     {
       name: "n g ng",
-      result: "mehning awazimni vnhge almaqchi",
-      expect: toKhan("mêniñ awazimni vnge almaqĉi"),
+      expect: "mehning awazimni vnhge almaqchi",
+      result: toKhan("mêniñ awazimni vnge almaqĉi"),
     },
     {
       name: "n gh, ngh => n+gh",
-      result: "bashlanghan",
-      expect: toKhan("baŝlanĝan"),
+      expect: "bashlanghan",
+      result: toKhan("baŝlanĝan"),
     },
   ];
 
@@ -110,8 +110,8 @@ describe("终止符 '/' 测试", () => {
   const cases = [
     {
       name: "终止符包围的内容不做转换",
-      result: "shirkhan /hello world/ deydu",
-      expect: toKhan("ŝirħan /hello world/ deydu"),
+      expect: "shirkhan /hello world/ deydu",
+      result: toKhan("ŝirħan /hello world/ deydu"),
     },
   ];
 
@@ -126,8 +126,8 @@ describe("标点符号", () => {
   const cases = [
     {
       name: "三个符号需要转移",
-      result: "?;,",
-      expect: toKhan("?;,"),
+      expect: "?;,",
+      result: toKhan("?;,"),
     },
   ];
 
