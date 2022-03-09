@@ -6,11 +6,6 @@ const alphabet = new Alphabet(AlphaKind.Ug);
 let ignoreConvert = false; // 不转义【默认都要转义】
 
 /**
- *
- *  Todo: 母语的标点符号替换部分现在不支持，得考虑如何加入进来
- */
-
-/**
  * 母语字母转换成 khan-uz
  * @returns
  */
@@ -18,7 +13,7 @@ export function ugToKhanUz() {
   return (tree: any) => {
     // 为了保证状态不被缓存，重置一次
     ignoreConvert = false;
-    visit(tree, "CharNode", handle as any);
+    visit(tree, "CharNode", converter as any);
   };
 }
 
@@ -55,10 +50,11 @@ function _ignoreConvertHanlder(
       if (i < 0) break;
     }
     if (i > 0) {
-      parent.children[i].value = "/" + parent.children[i].value;
+      parent.children[i].value = TRANSLATIONAL_MARK + parent.children[i].value;
     }
   }
-  // 当遍历了所有，转换模式还没停止的话停掉它
+
+  // 遍历完了忽略转换模式还没关闭
   if (
     ignoreConvert &&
     index === parent.children.length - 1 &&
@@ -70,7 +66,16 @@ function _ignoreConvertHanlder(
   }
 }
 
-function handle(
+function _replacePunction(node: CharNode) {
+  // result: "?;,",
+  // result: "؟؛،",
+  if (!node.isPunctuation()) return;
+
+  node.value = node.value.replace("؟", "?");
+  node.value = node.value.replace("؛", ";");
+  node.value = node.value.replace("،", ",");
+}
+function converter(
   node: CharNode,
   index: number,
   parent: { children: CharNode[] }
@@ -79,6 +84,8 @@ function handle(
   if (node.isWhiteSpace() || node.isNumber()) {
     return;
   }
+
+  _replacePunction(node);
   _ignoreConvertHanlder(node, index, parent);
 
   // 不在字母表中的字符跳过处理

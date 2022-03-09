@@ -93,8 +93,7 @@ describe("Hemze 规则测试", () => {
     {
       name: "符号开头的单词需正确处理Hemze",
       expect: toKhanUz("،ئادەملەر"),
-      // result: ",ademler",
-      result: "،ademler",
+      result: ",ademler",
     },
     {
       name: "空白开头的单词需正确处理Hemze",
@@ -152,8 +151,7 @@ describe("标点符号", () => {
     {
       name: "三个符号需要转移",
       expect: toKhanUz("؟؛،"),
-      // result: "?;,",
-      result: "؟؛،",
+      result: "?;,",
     },
   ];
 
