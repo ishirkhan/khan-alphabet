@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://gitee.com/shirkhan/khan-alphabet/compare/v0.0.2...v0.1.0) (2022-03-10)
+
+
+### Features
+
+* 构建参数和位置调整 ([1c21bd6](https://gitee.com/shirkhan/khan-alphabet/commit/1c21bd64302b0b8ced250f8d301266e2429f5f33))
+* 新增github-actions badge ([fc41b91](https://gitee.com/shirkhan/khan-alphabet/commit/fc41b911e7601b9db66ed1709d4a778fb8223580))
+* 新增remark 功能 ([48e4c9d](https://gitee.com/shirkhan/khan-alphabet/commit/48e4c9dbc21d73626c5f18117f0a0a6f40ead321))
+* 新增travis脚本 ([ccbcacc](https://gitee.com/shirkhan/khan-alphabet/commit/ccbcacca2ca1ee4b2d86f73d5eb0431f84b9c6f8))
+
 ### [0.0.2](https://gitee.com/shirkhan/khan-alphabet/compare/v0.0.1...v0.0.2) (2022-03-10)
 
 
