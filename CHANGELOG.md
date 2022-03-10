@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://gitee.com/shirkhan/khan-alphabet/compare/v0.0.1...v0.0.2) (2022-03-10)
+
+
+### Features
+
+* 解决khan-uz基础上编写khan内容时的n+g被识别成ng的问题 ([137adcd](https://gitee.com/shirkhan/khan-alphabet/commit/137adcd4ee64baab546ed7f408763ee8b6d4f01a))
+* khan,khan-uz,uly 等多个转换中的大小写识别问题再次优化 ([58088a5](https://gitee.com/shirkhan/khan-alphabet/commit/58088a5635638727934d29594eab3d5869303463))
+* update github action ([0b35509](https://gitee.com/shirkhan/khan-alphabet/commit/0b355091d15ca34999d1dd2811af9f81efb57d71))
+
+
+### Bug Fixes
+
+* khan 2 khan-uz 存在n+g问题修复,测试用例完善,khan-uz转ug时的hemze逻辑完善 ([c43462e](https://gitee.com/shirkhan/khan-alphabet/commit/c43462e11dcf41aa930e03c07d13ce1be12dba98))
+
 ### 0.0.1 (2022-03-09)
 
 
