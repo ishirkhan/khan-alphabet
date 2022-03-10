@@ -1,3 +1,5 @@
+[![自动测试](https://github.com/ishirkhan/khan-alphabet/actions/workflows/test.js.yml/badge.svg)](https://github.com/ishirkhan/khan-alphabet/actions/workflows/test.js.yml)
+
 # todo
 
 - [x] table 功能重写
