@@ -4,19 +4,18 @@
   "files": [
     "dist"
   ],
-  "typings": "./dist/lib/index.d.ts",
-  "main": "./dist/khan-alphabet.umd.js",
+  "typings": "./dist/types/index.d.ts",
+  "main": "./dist/lib/index.umd.js",
   "exports": {
     ".": {
-      "import": "./dist/khan-alphabet.es.js",
-      "require": "./dist/khan-alphabet.umd.js"
+      "import": "./dist/lib/index.es.js",
+      "require": "./dist/lib/index.umd.js"
     }
   },
   "scripts": {
     "start": "rm -rf node_modules/.vite && vite",
     "prebuild": "yarn test",
     "build": "tsc && vite build",
-    "postbuild": "tsc",
     "test": "jest --config=jest.config.js",
     "test:watch": "jest --config=jest.config.js --watch",
     "changelog:first": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && yarn changeissueurl",
@@ -25,7 +24,7 @@
     "release:major": "yarn release -r major",
     "release:minor": "yarn release -r minor",
     "release:patch": "yarn release -r patch",
-    "changeissueurl": "replace 'https://github.com/shirkhan-lib-name/commit/' 'https://gitee.com/silvaq/shirkhan-lib-name/commit/'",
+    "changeissueurl": "replace 'https://github.com/khan-alphabet/commit/' 'https://gitee.com/shirkhan/khan-alphabet/commit/'",
     "generate:readme": "yarn readme-md-generator -y"
   },
   "devDependencies": {

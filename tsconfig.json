@@ -20,10 +20,10 @@
     "noResolve": false,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "declarationDir": "dist"
+    "declarationDir": "dist/types"
   },
   "include": [
-    "./src"
+    "./src/lib"
   ],
   "exclude": [
     "**/*.test.ts"
