@@ -55,11 +55,11 @@ function converter(
 
   // 补充 hemze
   if (
-    (currentNodeAlpha.vowels &&
-      (node._pre === undefined ||
-        node._pre === " " ||
-        node.isPunctuation(node._pre))) ||
-    node._pre === "\n"
+    currentNodeAlpha.vowels &&
+    (node._pre === undefined ||
+      node._pre === " " ||
+      node.isPunctuation(node._pre) ||
+      node._pre === "\n")
   ) {
     node.value = alphabet.getHemze().ug + node.value;
   }

@@ -50,13 +50,7 @@ function _handleH(node: CharNode) {
   }
   // nhg 处理
   if (node.value === "nh") {
-    node.value = "n";
-  }
-}
-
-function _handleUpperCase(node: CharNode) {
-  if (node._value.length === 2 && node._value !== node._value.toLowerCase()) {
-    node.value = node.value.toUpperCase();
+    node.value = "n\u{200d}";
   }
 }
 

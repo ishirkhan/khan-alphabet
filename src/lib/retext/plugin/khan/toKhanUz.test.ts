@@ -16,23 +16,23 @@ describe("双字符测试 sh,kh eh,gh,ch,ng,zh,wh", () => {
   const cases = [
     {
       name: "sh,kh",
-      expect: toUz("shirkhan"),
-      result: "ŝirħan",
+      result: toUz("shirkhan"),
+      expect: "ŝirħan",
     },
     {
       name: "eh,gh",
-      expect: toUz("ehsil ishlargha tutush qilduq"),
-      result: "êsil iŝlarĝa tutuŝ qilduq",
+      result: toUz("ehsil ishlargha tutush qilduq"),
+      expect: "êsil iŝlarĝa tutuŝ qilduq",
     },
     {
       name: "ch,ng",
-      expect: toUz("chvshining"),
-      result: "ĉvŝiniñ",
+      result: toUz("chvshining"),
+      expect: "ĉvŝiniñ",
     },
     {
       name: "wh,zh",
-      expect: toUz("whazirqi jhornal"),
-      result: "ĥazirqi ĵornal",
+      result: toUz("whazirqi jhornal"),
+      expect: "ĥazirqi ĵornal",
     },
   ];
 
@@ -48,18 +48,18 @@ describe("h 字符规则测试", () => {
   const cases = [
     {
       name: "单独出现不做转换",
-      expect: toUz("ademh"),
-      result: "ademh",
+      result: toUz("ademh"),
+      expect: "ademh",
     },
     {
       name: "组词作用",
-      expect: toUz("shirkhan"),
-      result: "ŝirħan",
+      result: toUz("shirkhan"),
+      expect: "ŝirħan",
     },
     {
       name: "解决语义冲突作用",
-      expect: toUz("vnhge ehlish"),
-      result: "vnge êliŝ",
+      result: toUz("vnhge ehlish"),
+      expect: "vn\u{200d}ge êliŝ",
     },
   ];
 
@@ -74,33 +74,33 @@ describe("Hemze 规则测试", () => {
   const cases = [
     {
       name: "单词中间的x当做Hemze",
-      expect: toUz("svrxet"),
-      result: "svrxet",
+      result: toUz("svrxet"),
+      expect: "svrxet",
     },
     {
       name: "辅音开头的单词没有hemze",
-      expect: toUz("shirkhan"),
-      result: "ŝirħan",
+      result: toUz("shirkhan"),
+      expect: "ŝirħan",
     },
     {
       name: "元音开头的单词无需加Hemze",
-      expect: toUz("ademler"),
-      result: "ademler",
+      result: toUz("ademler"),
+      expect: "ademler",
     },
     {
       name: "元音开头带Hemze的单词需正常识别",
-      expect: toUz("ademler"),
-      result: "ademler",
+      result: toUz("ademler"),
+      expect: "ademler",
     },
     {
       name: "符号开头的单词需正确处理Hemze",
-      expect: toUz(",ademler"),
-      result: ",ademler",
+      result: toUz(",ademler"),
+      expect: ",ademler",
     },
     {
       name: "空白开头的单词需正确处理Hemze",
-      expect: toUz(" ademler"),
-      result: " ademler",
+      result: toUz(" ademler"),
+      expect: " ademler",
     },
   ];
 
@@ -115,13 +115,13 @@ describe("n g ng gh 语义冲突", () => {
   const cases = [
     {
       name: "n g ng",
-      expect: toUz("mehning awazimni vnhge almaqchi"),
-      result: "mêniñ awazimni vnge almaqĉi",
+      result: toUz("mehning awazimni vnhge almaqchi"),
+      expect: "mêniñ awazimni vn\u{200d}ge almaqĉi",
     },
     {
       name: "n gh, ngh => n+gh",
-      expect: toUz("bashlanghan"),
-      result: "baŝlanĝan",
+      result: toUz("bashlanghan"),
+      expect: "baŝlanĝan",
     },
   ];
 
@@ -136,8 +136,8 @@ describe("终止符 '/' 测试", () => {
   const cases = [
     {
       name: "终止符包围的内容不做转换",
-      expect: toUz("shirkhan /hello world/ deydu"),
-      result: "ŝirħan /hello world/ deydu",
+      result: toUz("shirkhan /hello world/ deydu"),
+      expect: "ŝirħan /hello world/ deydu",
     },
   ];
 
@@ -152,8 +152,8 @@ describe("标点符号", () => {
   const cases = [
     {
       name: "三个符号需要转移",
-      expect: toUz("?;,"),
-      result: "?;,",
+      result: toUz("?;,"),
+      expect: "?;,",
     },
   ];
 
@@ -168,18 +168,35 @@ describe("大小写区分", () => {
   const cases = [
     {
       name: "Shirkhan",
-      expect: toUz("Shirkhan"),
-      result: "Ŝirħan",
+      result: toUz("Shirkhan"),
+      expect: "Ŝirħan",
     },
     {
       name: "SHirkhan",
-      expect: toUz("SHirkhan"),
-      result: "Ŝirħan",
+      result: toUz("SHirkhan"),
+      expect: "Ŝirħan",
     },
     {
       name: "sHirkhan",
-      expect: toUz("sHirkhan"),
-      result: "ŝirħan",
+      result: toUz("sHirkhan"),
+      expect: "ŝirħan",
+    },
+  ];
+
+  cases.forEach((item) => {
+    test(item.name, () => {
+      expect(item.expect).toEqual(item.result);
+    });
+  });
+});
+
+// 为了消除khan-uz的基础上编写Khan 内容时出现的 khanuz 的n+g被khan 识别成ng的语义冲突，khan-uz 的n+g 都改成 n+ 0x200d+g 的字符
+describe("n+g 特例", () => {
+  const cases = [
+    {
+      name: "n+g",
+      expect: "vn\u{200d}ge êliŝ",
+      result: toUz("vnhge ehlish"),
     },
   ];
 
