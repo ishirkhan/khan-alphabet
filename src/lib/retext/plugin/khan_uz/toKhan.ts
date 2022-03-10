@@ -22,6 +22,9 @@ function converter(
   if (node.isWhiteSpace() || node.isNumber()) {
     return;
   }
+  if (node.value === "\u{200d}") {
+    node.value = "h";
+  }
 
   if (alphabet.hasChar(node.value) === false) {
     return;

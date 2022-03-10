@@ -153,3 +153,20 @@ describe("大小写区分", () => {
     });
   });
 });
+
+// 为了消除khan-uz的基础上编写Khan 内容时出现的 khanuz 的n+g被khan 识别成ng的语义冲突，khan-uz 的n+g 都改成 n+ 0x200d+g 的字符
+describe("n+g 特例", () => {
+  const cases = [
+    {
+      name: "n+g",
+      expect: "vnhge ehlish",
+      result: toKhan("vn\u{200d}ge êliŝ"),
+    },
+  ];
+
+  cases.forEach((item) => {
+    test(item.name, () => {
+      expect(item.expect).toEqual(item.result);
+    });
+  });
+});

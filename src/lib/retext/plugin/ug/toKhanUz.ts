@@ -92,4 +92,8 @@ function converter(
   // 开始处理母语字母
   _removeHemze(node); //去掉 Hemze
   node.value = alphabet.getAlpha(node._value).khanUz;
+  // 为了消除khan-uz的基础上编写Khan 内容时出现的 khanuz 的n+g被khan 识别成ng的语义冲突，khan-uz 的n+g 都改成 n+ 0x200d+g 的字符
+  if (node.value === "n" && node._next === "گ") {
+    node.value = node.value + "\u{200d}";
+  }
 }
