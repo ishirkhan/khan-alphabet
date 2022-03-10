@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://gitee.com/shirkhan/khan-alphabet/compare/v1.0.0...v1.0.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* 因remark的导出导致的vscode等node环境报document.body找不到错误临时屏蔽 ([d338f9c](https://gitee.com/shirkhan/khan-alphabet/commit/d338f9c55cf347692d13b686bcca6b9845026418))
+
 ## [1.0.0](https://gitee.com/shirkhan/khan-alphabet/compare/v0.1.0...v1.0.0) (2022-03-10)
 
 ## [0.1.0](https://gitee.com/shirkhan/khan-alphabet/compare/v0.0.2...v0.1.0) (2022-03-10)
