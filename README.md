@@ -12,3 +12,4 @@
     - [x] ug to khan-uz
   - [x] khan
     - [x] khan to khan-uz
+- [x] remark 功能重写

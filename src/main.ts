@@ -1,28 +1,13 @@
-import "./style.css";
+import { khanRemark, khanTextToKhanUz, khanUzTextToUg } from "./lib";
 
-import { khanUzTextToKhan, khanUzTextToUg } from "./lib/retext";
-
-const text = `
-ŝirħan êlipbesi ŝirħanniñ turmuŝ we ħizmet iĥtiyaji vĉvn yasap ĉiqilĝan êlipbedur.
-
-ŝirħan êlipbesi ŝirħan teripidin yasalĝan, ôziniñ iĥtiyaji we iŝlitiŝ aditini asas qilĝan êlipbe bolup ĥêĉqandaq til-yêziq qaxide-pirinsipliriĝa tayanmiĝan we uyĝun kelmesliki momkin. u pvtvnley ŝeħiske wekillik qilidiĝan êlipbe bulup,ŝirħanniñ kiŝilik ħaĥiŝi we ôzlvk pirinsipini asas qilidu.
+let markdown = `
+# shirkhan nimandaq isil bala deymende
+- nimishqa digendek  men shundaq oylap qaldim , buning nimishqisi yoq emeliyette
 `;
-let ug = khanUzTextToUg(text);
-let khan = khanUzTextToKhan(text);
-
-document.querySelector("#app")!.innerHTML = `
- 
-  <div>
-  <h1>Hello ShirkhanLib!</h1>
- 
-  Khan:
-  <hr/>
-  <p >${khan}</p>
-  Khan-uz:
-  <hr/>
-  <p >${text}</p>
-  Ug:
-  <hr/>
-  <p dir="rtl">${ug}</p>
-  </div>
-`;
+const result = khanRemark
+  .data("converter", (node: { value: string }) => {
+    return khanUzTextToUg(khanTextToKhanUz(node.value));
+  })
+  .processSync(markdown)
+  .toString();
+console.log(result);
