@@ -6,8 +6,6 @@
   ],
   "typings": "./dist/types/index.d.ts",
   "main": "./dist/lib/index.umd.js",
-  "sideEffects": false,
-  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/lib/index.es.js",
