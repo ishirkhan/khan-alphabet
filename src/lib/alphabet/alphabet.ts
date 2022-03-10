@@ -50,23 +50,39 @@ export class Alphabet {
   }
 
   hasChar(tChar: string) {
-    return tChar in this.map;
+    return tChar.toLowerCase() in this.map;
   }
 
   getAlpha(tChar: string) {
-    if (this.hasChar(tChar)) {
-      return this.map[tChar];
-    }
+    const lowered = tChar.toLowerCase();
+    let alpha: IAlpha;
 
-    let alpha: IAlpha = {
-      kind: this.kind,
-      ug: tChar,
-      uly: tChar,
-      khan: tChar,
-      khanUz: tChar,
-      vowels: false,
-      hemze: false,
-    };
-    return new Alpha(alpha);
+    if (this.hasChar(lowered)) {
+      alpha = JSON.parse(JSON.stringify(this.map[lowered])); // 做一次深拷贝
+    } else {
+      let a: IAlpha = {
+        kind: this.kind,
+        ug: tChar,
+        uly: tChar,
+        khan: tChar,
+        khanUz: tChar,
+        vowels: false,
+        hemze: false,
+      };
+
+      alpha = new Alpha(a);
+    }
+    if (typeof tChar !== "string") return alpha;
+    if (this.kind === AlphaKind.Ug) return alpha;
+    /**
+     * 处理一下大小写  sh,sH -> s. Sh,SH -> S
+     */
+    if (tChar.charAt(0).toLowerCase() !== tChar.charAt(0)) {
+      alpha.khanUz =
+        alpha.khanUz.charAt(0).toUpperCase() + alpha.khanUz.slice(1);
+      alpha.khan = alpha.khan.charAt(0).toUpperCase() + alpha.khan.slice(1);
+      alpha.uly = alpha.uly.charAt(0).toUpperCase() + alpha.uly.slice(1);
+    }
+    return alpha;
   }
 }

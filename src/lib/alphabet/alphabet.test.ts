@@ -42,4 +42,11 @@ describe("测试 Alphabet", () => {
     expect(UgAlphabet.getAlpha("100").khan).toEqual("100");
     expect(UgAlphabet.getAlpha("?").khan).toEqual("?");
   });
+
+  test("测试 Alphabet getAlpha  大小写", () => {
+    const alphabet = new Alphabet(AlphaKind.Khan);
+    expect(alphabet.getAlpha("Sh").khan).toEqual("Sh");
+    expect(alphabet.getAlpha("SH").khan).toEqual("Sh");
+    expect(alphabet.getAlpha("sH").khan).toEqual("sh");
+  });
 });

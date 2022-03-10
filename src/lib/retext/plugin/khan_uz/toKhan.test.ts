@@ -137,3 +137,19 @@ describe("标点符号", () => {
     });
   });
 });
+
+describe("大小写区分", () => {
+  const cases = [
+    {
+      name: "Shirkhan",
+      expect: "Shirkhan",
+      result: toKhan("Ŝirħan"),
+    },
+  ];
+
+  cases.forEach((item) => {
+    test(item.name, () => {
+      expect(item.expect).toEqual(item.result);
+    });
+  });
+});

@@ -1,14 +1,24 @@
 import "./style.css";
 
-import { khanUzTextToKhan, khanUzTextToUg } from "./lib/retext";
+import {
+  khanTextToKhanUz,
+  khanUzTextToKhan,
+  khanUzTextToUg,
+} from "./lib/retext";
 
 const text = `
-ŝirħan êlipbesi ŝirħanniñ turmuŝ we ħizmet iĥtiyaji vĉvn yasap ĉiqilĝan êlipbedur.
+ŜIRĦAN ÊLIPBESI ŜIRĦANNIÑ TURMUŜ WE ĦIZMET IĤTIYAJI VĈVN YASAP ĈIQILĜAN ÊLIPBEDUR.
 
 ŝirħan êlipbesi ŝirħan teripidin yasalĝan, ôziniñ iĥtiyaji we iŝlitiŝ aditini asas qilĝan êlipbe bolup ĥêĉqandaq til-yêziq qaxide-pirinsipliriĝa tayanmiĝan we uyĝun kelmesliki momkin. u pvtvnley ŝeħiske wekillik qilidiĝan êlipbe bulup,ŝirħanniñ kiŝilik ħaĥiŝi we ôzlvk pirinsipini asas qilidu.
 `;
 let ug = khanUzTextToUg(text);
 let khan = khanUzTextToKhan(text);
+
+console.log(
+  khanTextToKhanUz(
+    "ShIRKhAN EhLIPBESI ShIRKhANNINg TURMUSh WE KhIZMET IWhTIYAJI VChVN YASAP ChIQILGhAN EhLIPBEDUR"
+  )
+);
 
 document.querySelector("#app")!.innerHTML = `
  

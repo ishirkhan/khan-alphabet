@@ -61,8 +61,6 @@ function _handleUpperCase(node: CharNode) {
 }
 
 function _replaceChar(node: CharNode) {
-  node._value = node.value;
-  node.value = node.value.toLowerCase();
   if (alphabet.hasChar(node.value) === false) {
     return;
   }
@@ -104,6 +102,4 @@ function converter(
   _handleH(node);
   // 转换
   _replaceChar(node);
-  //大小写  Sh SH ->S, sH -> s【因h 组合后去掉，所以它的大写会导致大写】
-  _handleUpperCase(node);
 }
