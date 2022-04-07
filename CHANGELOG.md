@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://gitee.com/shirkhan/khan-alphabet/compare/v1.0.1...v1.1.0) (2022-04-07)
+
+
+### Features
+
+* 新增khan-uz 转换uly. khan-uz 目录结构微调 ([9d0cae7](https://gitee.com/shirkhan/khan-alphabet/commit/9d0cae7aea6c17c0d2cfa9247e59e2ee619b8033))
+* 新增uly转khan-uz的转换 ([e2aae5b](https://gitee.com/shirkhan/khan-alphabet/commit/e2aae5b276537dc929205bfa122c496056f4625e))
+
+
+### Bug Fixes
+
+* 去掉模块标记 ([1d65097](https://gitee.com/shirkhan/khan-alphabet/commit/1d65097c072d18a33b5ac014f347085f71eaff84))
+* 修复uly to khan-uz 部分边界情况下的bug ([3d9dcb0](https://gitee.com/shirkhan/khan-alphabet/commit/3d9dcb0420e465e3de263b81a2999aca67fc9293))
+
 ### [1.0.1](https://gitee.com/shirkhan/khan-alphabet/compare/v1.0.0...v1.0.1) (2022-03-10)
 
 
