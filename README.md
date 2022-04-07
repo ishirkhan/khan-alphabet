@@ -8,8 +8,11 @@
   - [x] khan-uz
     - [x] khan-uz to khan
     - [x] khan-uz to ug
+    - [ ] khan-uz to uly
   - [x] ug
     - [x] ug to khan-uz
   - [x] khan
     - [x] khan to khan-uz
+  - [x] uly
+    - [x] uly to khan-uz
 - [x] remark 功能重写
