@@ -1,6 +1,6 @@
 import { visit } from "unist-util-visit";
-import { Alphabet, AlphaKind } from "../../../alphabet";
-import { CharNode } from "../../charNode";
+import { Alphabet, AlphaKind } from "../../../../alphabet";
+import { CharNode } from "../../../charNode";
 
 const alphabet = new Alphabet(AlphaKind.KhanUz);
 

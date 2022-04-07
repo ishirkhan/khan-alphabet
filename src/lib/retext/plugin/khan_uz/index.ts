@@ -1,2 +1,3 @@
-export * from "./toUg";
-export * from "./toKhan";
+export * from "./ug";
+export * from "./khan";
+export * from "./uly";

@@ -1,7 +1,7 @@
 import { unified } from "unified";
-import { baseCompiler } from "../../compiler";
-import { baseParser } from "../../parser";
-import { khanUzToUg } from "./toUg";
+import { baseCompiler } from "../../../compiler";
+import { baseParser } from "../../../parser";
+import { khanUzToUg } from ".";
 
 const processor = unified()
   .use(baseParser)

@@ -1,14 +1,14 @@
 import { visit } from "unist-util-visit";
-import { Alphabet, AlphaKind, SEPARATE_MARK } from "../../../alphabet";
-import { CharNode } from "../../charNode";
+import { Alphabet, AlphaKind } from "../../../../alphabet";
+import { CharNode } from "../../../charNode";
 
 const alphabet = new Alphabet(AlphaKind.KhanUz);
 
 /**
- * khan-uz 转换 khan
+ * khan-uz 转换 uly
  * @returns
  */
-export function khanUzToKhan() {
+export function khanUzToUly() {
   return (tree) => {
     visit(tree, "CharNode", converter as any);
   };
@@ -23,7 +23,11 @@ function converter(
     return;
   }
   if (node.value === "\u{200d}") {
-    node.value = "h";
+    node.value = "'";
+  }
+
+  if (node.value === "x") {
+    node.value = "'";
   }
 
   if (alphabet.hasChar(node.value) === false) {
@@ -32,7 +36,8 @@ function converter(
 
   // 处理 n+g 在一起的情况
   if (node._pre && node._pre === "n" && node.value === "g") {
-    node.value = SEPARATE_MARK + node.value;
+    node.value = "'" + node.value;
   }
-  node.value = alphabet.getAlpha(node.value).khan;
+
+  node.value = alphabet.getAlpha(node.value).uly;
 }

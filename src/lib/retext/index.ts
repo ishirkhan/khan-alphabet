@@ -4,7 +4,7 @@ import { baseParser } from "./parser";
 import { khanToKhanUz } from "./plugin/khan";
 import { ugToKhanUz } from "./plugin/ug";
 import { ulyToKhanUz } from "./plugin/uly";
-import { khanUzToKhan, khanUzToUg } from "./plugin/khan_uz";
+import { khanUzToKhan, khanUzToUg, khanUzToUly } from "./plugin/khan_uz";
 
 export function khanTextToKhanUz(text: string) {
   return unified()
@@ -47,6 +47,15 @@ export function khanUzTextToKhan(text: string) {
   return unified()
     .use(baseParser)
     .use(khanUzToKhan)
+    .use(baseCompiler as any)
+    .processSync(text)
+    .toString();
+}
+
+export function khanUzTextToUly(text: string) {
+  return unified()
+    .use(baseParser)
+    .use(khanUzToUly)
     .use(baseCompiler as any)
     .processSync(text)
     .toString();

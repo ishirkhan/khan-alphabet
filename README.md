@@ -6,9 +6,9 @@
 - [x] retext 功能重写
   > 所有转换通过 khan-uz 当做桥梁进行耦合
   - [x] khan-uz => to
-    - [x] khan-uz to khan
-    - [x] khan-uz to ug
-    - [ ] khan-uz to uly
+    - [x] khan
+    - [x] ug
+    - [ ] uly
   - [x] to => khan-uz
     - [x] ug
     - [x] khan

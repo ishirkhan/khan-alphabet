@@ -1,43 +1,43 @@
 import { unified } from "unified";
-import { baseCompiler } from "../../compiler";
-import { baseParser } from "../../parser";
-import { khanUzToKhan } from "./toKhan";
+import { baseCompiler } from "../../../compiler";
+import { baseParser } from "../../../parser";
+import { khanUzToUly } from "./";
 
-// khan-uz to khan
+// khan-uz to uly
 const processor = unified()
   .use(baseParser)
-  .use(khanUzToKhan)
+  .use(khanUzToUly)
   .use(baseCompiler as any);
 // khan to ug
-const toKhan = (text) => processor.processSync(text).toString();
+const toUly = (text) => processor.processSync(text).toString();
 
 describe("双字符测试 sh,kh eh,gh,ch,ng,zh,wh", () => {
   const cases = [
     {
       name: "sh,kh",
-      expect: "shirkhan",
-      result: toKhan("ŝirħan"),
+      expect: "shirxan",
+      result: toUly("ŝirħan"),
     },
     {
       name: "eh,gh",
-      expect: "ehsil ishlargha tutush qilduq",
-      result: toKhan("êsil iŝlarĝa tutuŝ qilduq"),
+      expect: "ësil ishlargha tutush qilduq",
+      result: toUly("êsil iŝlarĝa tutuŝ qilduq"),
     },
     {
       name: "ch,ng",
-      expect: "chvshining",
-      result: toKhan("ĉvŝiniñ"),
+      expect: "chüshining",
+      result: toUly("ĉvŝiniñ"),
     },
     {
-      name: "wh,zh",
-      expect: "whazirqi jhornal",
-      result: toKhan("ĥazirqi ĵornal"),
+      name: "h,zh",
+      expect: "hazirqi zhornal",
+      result: toUly("ĥazirqi ĵornal"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -48,23 +48,23 @@ describe("h 字符规则测试", () => {
     {
       name: "单独出现不做转换",
       expect: "ademh",
-      result: toKhan("ademh"),
+      result: toUly("ademh"),
     },
     {
       name: "组词作用",
-      expect: "shirkhan",
-      result: toKhan("ŝirħan"),
+      expect: "shirxan",
+      result: toUly("ŝirħan"),
     },
     {
       name: "解决语义冲突作用",
-      expect: "vnhge ehlish",
-      result: toKhan("vnge êliŝ"),
+      expect: "ün'ge ëlish",
+      result: toUly("vnge êliŝ"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -73,14 +73,14 @@ describe("Hemze 规则测试", () => {
   const cases = [
     {
       name: "单词中间的x当做Hemze",
-      expect: "svrxet",
-      result: toKhan("svrxet"),
+      expect: "sür'et",
+      result: toUly("svrxet"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -89,19 +89,19 @@ describe("n g ng gh 语义冲突", () => {
   const cases = [
     {
       name: "n g ng",
-      expect: "mehning awazimni vnhge almaqchi",
-      result: toKhan("mêniñ awazimni vnge almaqĉi"),
+      expect: "mëning awazimni ün'ge almaqchi",
+      result: toUly("mêniñ awazimni vnge almaqĉi"),
     },
     {
       name: "n gh, ngh => n+gh",
       expect: "bashlanghan",
-      result: toKhan("baŝlanĝan"),
+      result: toUly("baŝlanĝan"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -110,14 +110,14 @@ describe("终止符 '/' 测试", () => {
   const cases = [
     {
       name: "终止符包围的内容不做转换",
-      expect: "shirkhan /hello world/ deydu",
-      result: toKhan("ŝirħan /hello world/ deydu"),
+      expect: "shirxan /hello world/ deydu",
+      result: toUly("ŝirħan /hello world/ deydu"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -127,13 +127,13 @@ describe("标点符号", () => {
     {
       name: "三个符号需要转移",
       expect: "?;,",
-      result: toKhan("?;,"),
+      result: toUly("?;,"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -141,15 +141,15 @@ describe("标点符号", () => {
 describe("大小写区分", () => {
   const cases = [
     {
-      name: "Shirkhan",
-      expect: "Shirkhan",
-      result: toKhan("Ŝirħan"),
+      name: "Shirxan",
+      expect: "Shirxan",
+      result: toUly("Ŝirħan"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -159,14 +159,14 @@ describe("n+g 特例", () => {
   const cases = [
     {
       name: "n+g",
-      expect: "vnhge ehlish",
-      result: toKhan("vn\u{200d}ge êliŝ"),
+      expect: "ün'ge ëlish",
+      result: toUly("vn\u{200d}ge êliŝ"),
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
