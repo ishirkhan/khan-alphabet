@@ -8,7 +8,7 @@
   - [x] khan-uz => to
     - [x] khan
     - [x] ug
-    - [ ] uly
+    - [x] uly
   - [x] to => khan-uz
     - [x] ug
     - [x] khan
