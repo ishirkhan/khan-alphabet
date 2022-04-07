@@ -44,18 +44,20 @@ function _handleNG(node: CharNode) {
 }
 
 function _handleH(node: CharNode) {
-  // 忽略 h
-  if (node.value.toLowerCase() === SEPARATE_MARK) {
+  // 双字符时忽略 h
+  const h = node.value.toLowerCase();
+  if (
+    h === SEPARATE_MARK &&
+    ["s", "e", "o", "z", "g", "c", "n"].indexOf(node?._pre?.toLowerCase()) !==
+      -1
+  ) {
     node.value = "";
+    return;
   }
   /**
    * 因uly 是用 ' 来做的分界符，这里以防万一 ' 和 h 两个都兼容一下子
    */
   // nhg 处理
-  if (node.value === "n'") {
-    node.value = "n\u{200d}";
-  }
-
   if (node.value === "nh") {
     node.value = "n\u{200d}";
   }
@@ -66,7 +68,6 @@ function _handleH(node: CharNode) {
   if (node.value === "oh") {
     node.value = "ö";
   }
-  console.log(node);
 }
 
 function _replaceChar(node: CharNode) {
@@ -80,10 +81,16 @@ function _handleSeperateMark(node: CharNode) {
   if (node._next !== "undefined" && node.value !== "'") {
     return;
   }
+  if (node._next === "g") {
+    // 'g
+    node.value = "\u{200d}";
+    return;
+  }
 
   const nextChar = alphabet.getAlpha(node._next);
   if (nextChar.vowels) {
-    node.value = "\u{200d}"; // 是的被replace 成khan-uz的 hemze
+    node.value = alphabet.getAlpha("\u{200d}").khanUz; // 是的被replace 成khan-uz的 hemze
+    return;
   }
 }
 
@@ -115,15 +122,14 @@ function converter(
 
   _handleNG(node);
 
-  // 合并字符
+  // 合并字符 h
   if (node._next?.toLowerCase() === SEPARATE_MARK) {
     node.value = node.value + SEPARATE_MARK;
     node._value = node.value;
   }
   _handleH(node);
-  // 注重处理 ' 符号
-  _handleSeperateMark(node);
-
   // 转换
   _replaceChar(node);
+  // 注重处理 ' 符号
+  _handleSeperateMark(node);
 }

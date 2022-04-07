@@ -31,14 +31,14 @@ describe("双字符测试 sh eh,oh,gh,ng,zh", () => {
     },
     {
       name: "zh",
-      result: toUz("hazirqi jhornal"),
+      result: toUz("hazirqi zhornal"),
       expect: "ĥazirqi ĵornal",
     },
   ];
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -65,7 +65,7 @@ describe("双字符测试 sh eh,oh,gh,ng,zh", () => {
 
 //   cases.forEach((item) => {
 //     test(item.name, () => {
-//       expect(item.expect).toEqual(item.result);
+//       expect(item.result).toEqual(item.expect);
 //     });
 //   });
 // });
@@ -106,7 +106,7 @@ describe("Hemze 规则测试", () => {
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -127,7 +127,7 @@ describe("n g ng gh 语义冲突", () => {
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -143,7 +143,7 @@ describe("终止符 '/' 测试", () => {
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -159,7 +159,7 @@ describe("标点符号", () => {
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -185,7 +185,7 @@ describe("大小写区分", () => {
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
@@ -207,7 +207,7 @@ describe("n+g 特例", () => {
 
   cases.forEach((item) => {
     test(item.name, () => {
-      expect(item.expect).toEqual(item.result);
+      expect(item.result).toEqual(item.expect);
     });
   });
 });
