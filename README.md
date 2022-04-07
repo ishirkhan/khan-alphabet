@@ -5,14 +5,12 @@
 - [x] table 功能重写
 - [x] retext 功能重写
   > 所有转换通过 khan-uz 当做桥梁进行耦合
-  - [x] khan-uz
+  - [x] khan-uz => to
     - [x] khan-uz to khan
     - [x] khan-uz to ug
     - [ ] khan-uz to uly
-  - [x] ug
-    - [x] ug to khan-uz
-  - [x] khan
-    - [x] khan to khan-uz
-  - [x] uly
-    - [x] uly to khan-uz
+  - [x] to => khan-uz
+    - [x] ug
+    - [x] khan
+    - [x] uly
 - [x] remark 功能重写
