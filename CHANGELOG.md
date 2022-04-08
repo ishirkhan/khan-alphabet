@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://gitee.com/shirkhan/khan-alphabet/compare/v1.1.0...v1.1.1) (2022-04-08)
+
+
+### Bug Fixes
+
+* uly to khan-uz 修复 h 字符生成组合字符错误导致的h 无法正确处理问题 ([b45e444](https://gitee.com/shirkhan/khan-alphabet/commit/b45e444b50b1af9cbb607dc5bdc3486bb1572cf1))
+
 ## [1.1.0](https://gitee.com/shirkhan/khan-alphabet/compare/v1.0.1...v1.1.0) (2022-04-07)
 
 
