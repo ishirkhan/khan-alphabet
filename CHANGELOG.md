@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://gitee.com/shirkhan/khan-alphabet/compare/v1.1.1...v1.1.2) (2022-04-08)
+
+
+### Features
+
+* 新增uly的 format功能,目前只替换双字符,将来完成规范中的更多规范的自动补充格式化 ([1f84228](https://gitee.com/shirkhan/khan-alphabet/commit/1f84228cd0f11ffac626783c67659a8b995f6db3))
+
 ### [1.1.1](https://gitee.com/shirkhan/khan-alphabet/compare/v1.1.0...v1.1.1) (2022-04-08)
 
 
