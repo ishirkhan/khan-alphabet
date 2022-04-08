@@ -8,6 +8,7 @@ import {
 import { CharNode } from "../../charNode";
 
 const alphabet = new Alphabet(AlphaKind.Uly);
+const pairChars = ["s", "e", "o", "z", "g", "c", "n"]; // 将可能会和 h 组合生成新字符的组合字符 比如 sh  zh gh
 
 let ignoreConvert = false;
 /**
@@ -48,8 +49,7 @@ function _handleH(node: CharNode) {
   const h = node.value.toLowerCase();
   if (
     h === SEPARATE_MARK &&
-    ["s", "e", "o", "z", "g", "c", "n"].indexOf(node?._pre?.toLowerCase()) !==
-      -1
+    pairChars.indexOf(node?._pre?.toLowerCase()) !== -1
   ) {
     node.value = "";
     return;
@@ -123,8 +123,12 @@ function converter(
   _handleNG(node);
 
   // 合并字符 h
-  if (node._next?.toLowerCase() === SEPARATE_MARK) {
-    node.value = node.value + SEPARATE_MARK;
+  const nextChar = node._next?.toLowerCase();
+  if (
+    nextChar === SEPARATE_MARK &&
+    pairChars.indexOf(node.value?.toLowerCase()) !== -1
+  ) {
+    node.value = node.value + nextChar;
     node._value = node.value;
   }
   _handleH(node);

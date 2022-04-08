@@ -44,31 +44,31 @@ describe("双字符测试 sh eh,oh,gh,ng,zh", () => {
 });
 
 // 只能组词用，不能单独使用,有语义冲突作用
-// describe("h 字符规则测试", () => {
-//   const cases = [
-//     {
-//       name: "单独出现不做转换",
-//       result: toUz("ademh"),
-//       expect: "ademh",
-//     },
-//     {
-//       name: "组词作用",
-//       result: toUz("shirkhan"),
-//       expect: "ŝirħan",
-//     },
-//     {
-//       name: "解决语义冲突作用",
-//       result: toUz("vnhge ehlish"),
-//       expect: "vn\u{200d}ge êliŝ",
-//     },
-//   ];
+describe("h 字符规则测试", () => {
+  const cases = [
+    {
+      name: "单独出现不做转换",
+      result: toUz("ademh"),
+      expect: "ademĥ",
+    },
+    {
+      name: "组词作用",
+      result: toUz("shirxan"),
+      expect: "ŝirħan",
+    },
+    {
+      name: "解决语义冲突作用",
+      result: toUz("vn'ge ehlish"),
+      expect: "vn\u{200d}ge êliŝ",
+    },
+  ];
 
-//   cases.forEach((item) => {
-//     test(item.name, () => {
-//       expect(item.result).toEqual(item.expect);
-//     });
-//   });
-// });
+  cases.forEach((item) => {
+    test(item.name, () => {
+      expect(item.result).toEqual(item.expect);
+    });
+  });
+});
 
 describe("Hemze 规则测试", () => {
   const cases = [
