@@ -86,6 +86,10 @@ function _handleSeperateMark(node: CharNode) {
     node.value = "\u{200d}";
     return;
   }
+  if (node._next === "h") {
+    // 'h  因这个方法最终调用，前面字符替换都已经完成了，所以需要去掉 分音节符
+    node.value = "";
+  }
 
   const nextChar = alphabet.getAlpha(node._next);
   if (nextChar.vowels) {

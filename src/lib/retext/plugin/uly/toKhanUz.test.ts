@@ -70,6 +70,28 @@ describe("h 字符规则测试", () => {
   });
 });
 
+// 只能组词用，不能单独使用,有语义冲突作用
+describe("' 分音节符", () => {
+  const cases = [
+    {
+      name: "e'h 分割",
+      result: toUz("me'hsulat"),
+      expect: "meĥsulat",
+    },
+    {
+      name: "o'h 分割",
+      result: toUz("ro'hi"),
+      expect: "roĥi",
+    },
+  ];
+
+  cases.forEach((item) => {
+    test(item.name, () => {
+      expect(item.result).toEqual(item.expect);
+    });
+  });
+});
+
 describe("Hemze 规则测试", () => {
   const cases = [
     {
