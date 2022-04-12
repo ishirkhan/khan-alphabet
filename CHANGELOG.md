@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://gitee.com/shirkhan/khan-alphabet/compare/v1.1.2...v1.1.3) (2022-04-12)
+
+
+### Features
+
+* scripts update, add prepublish 以防没有编译就发布 ([8779057](https://gitee.com/shirkhan/khan-alphabet/commit/87790572aa8999183a1db115d4a0115fcf4ea04f))
+
+
+### Bug Fixes
+
+* 分音节符出现在组合字符中间时处理不当导致的母语转化结果带分音节符号问题修复 ([9a23bb0](https://gitee.com/shirkhan/khan-alphabet/commit/9a23bb0d8eaae8dbcd192a9976e0d03f729208e1))
+
 ### [1.1.2](https://gitee.com/shirkhan/khan-alphabet/compare/v1.1.1...v1.1.2) (2022-04-08)
 
 
