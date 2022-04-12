@@ -14,6 +14,7 @@
   },
   "scripts": {
     "start": "rm -rf node_modules/.vite && vite",
+    "prepublish": "yarn test && yarn build",
     "prebuild": "yarn test",
     "build": "tsc && vite build",
     "test": "jest --config=jest.config.js",
